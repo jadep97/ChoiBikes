@@ -17,9 +17,13 @@ class ItemController extends Controller
     public function index()
     {
         //
+
         $items = Item::all();
 
-        return view('items.index', compact('items'));
+        $filter = Item::all()->unique('brandName', 'category');
+        
+        
+        return view('items.index', compact('items', 'filter'));
     }
 
     /**
@@ -136,7 +140,7 @@ class ItemController extends Controller
 
         $item = Item::find($id);
 
-        $item->destroy();
+        $item->delete();
 
         return redirect()->route('item.index')->withStatus('item deleted successfully');
     }
@@ -152,8 +156,7 @@ class ItemController extends Controller
        
         $item = new Item;
         $searchItem = $item->searchItem($filters);
-        $items = Item::all();
-
+        $items = Item::all()->unique('category', 'brandName');
         return view('items.search', compact('searchItem', 'items'));
 
     }

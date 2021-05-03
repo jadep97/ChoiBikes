@@ -16,7 +16,7 @@ class Item extends Model
     public function searchItem($filters){
 
     	$items = Item::where('category', $filters['category'])
-    				   ->where('brandName', $filters['brandName'])
+    				   ->orwhere('brandName', $filters['brandName'])
     				   ->get();
 
     				  

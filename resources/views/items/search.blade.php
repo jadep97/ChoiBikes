@@ -63,7 +63,7 @@
                       <th>
                         Category
                       </th>
-                      <th class="text-right">
+                      <th class="text-center">
                         Actions
                       </th>
                     </thead>
@@ -79,14 +79,49 @@
                           <td>
                             {{ $srchItem->category }}
                           </td>
-                          <td class="text-right">
+                          <td class="text-center">
+
+                            <!-- Button trigger modal for delete item -->
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteItem{{ $srchItem->id }}">
+                              Delete
+                            </button>
+
+                            <!-- Modal delete item -->
+                            <div class="modal fade" id="deleteItem{{ $srchItem->id }}" tabindex="-1" role="dialog" aria-labelledby="itemDelete" aria-hidden="true">
+                              <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="itemDelete">Item Details</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                  <div class="modal-body">
+                                    <ul class="list-group">
+                                      <li class="list-group-item"> ITEM NAME: {{ $srchItem->itemName }}</li>
+                                      <li class="list-group-item"> BRAND NAME: {{ $srchItem->brandName }}</li>
+                                      <li class="list-group-item"> CATEGORY: {{ $srchItem->category }}</li>
+                                      <li class="list-group-item"> STOCKS: {{ $srchItem->stocks }}</li>
+                                      <li class="list-group-item"> PRICE: {{ $srchItem->price }}</li>
+                                      <li class="list-group-item"> LAST PRICE: {{ $srchItem->lastPrice }}</li>
+                                    </ul>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary" href="{{ route('item.destroy', $item->id) }}">Delete Item</button>
+                                  </div>
+
+                                </div>
+                              </div>
+                            </div>
+
                               <!-- Button trigger modal for view item -->
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#showItem">
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#showItem{{ $srchItem->id }}">
                               View
                             </button>
 
                             <!-- Modal view item -->
-                            <div class="modal fade" id="showItem" tabindex="-1" role="dialog" aria-labelledby="showItemDetails" aria-hidden="true">
+                            <div class="modal fade" id="showItem{{ $srchItem->id }}" tabindex="-1" role="dialog" aria-labelledby="showItemDetails" aria-hidden="true">
                               <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                   <div class="modal-header">
@@ -113,12 +148,12 @@
                             </div>
 
                             <!-- Button trigger modal for edit item -->
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editItem">
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editItem{{ $srchItem->id }}">
                               Edit
                             </button>
 
                             <!-- Modal edit item -->
-                            <div class="modal fade" id="editItem" tabindex="-1" role="dialog" aria-labelledby="editItemDetails" aria-hidden="true">
+                            <div class="modal fade" id="editItem{{ $srchItem->id }}" tabindex="-1" role="dialog" aria-labelledby="editItemDetails" aria-hidden="true">
                               <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                   <div class="modal-header">
@@ -187,12 +222,6 @@
                               </div>
                             </div>
                           
-
-                           <!-- Button trigger modal for delete item -->
-                            <button type="button" class="btn btn-primary" href="{{ route('item.destroy', $srchItem->id) }}">
-                              Delete
-                            </button>
-
                           </td>
                         </tr>
                       @endforeach

@@ -32,7 +32,7 @@
                 <div class="col">
                   <div class="form-outline">
                     <input type="text" id="itemName" name="itemName" class="form-control" />
-                    <label class="form-label" for="itemName">Item Name/Category</label>
+                    <label class="form-label" for="itemName">Item Name</label>
                   </div>
                 </div>
                 <div class="col">
